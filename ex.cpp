@@ -3,18 +3,25 @@
 using namespace std;
 
 int main(){
-	string a = "id: parapapapasdp sadpl dsap ldsapl dapsl ";
+string b,c,d;
+	string a = "id: the girls isn't that nice ";
 	int pos = a.find("id: ");
 	string teste = "nao funcionou";
 	if (pos == -1){
-	cout << teste <<endl;
+	cout << "problema" <<endl;
 	return 1;
 }
 	else{
-	teste = a.substr(pos + 2);
+	teste = a.substr(pos + 4);
+
+	if (teste.find("'")){
+	b = teste.substr(0, teste.find("'"));
+	c = teste.substr(teste.find("'"));
+	d = b + "'" + c;
 }
 
-	cout << teste <<endl;
+	cout << d <<endl;
 return 0;
+}
 }
 

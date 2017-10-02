@@ -23,7 +23,7 @@ try {
 	int id, salesrank;
 	string asin, title, grupo;
   string line;
-  ifstream myfile ("/home/luiz/Downloads/amazon-meta.txt"); // ifstream = padrão ios:in
+  ifstream myfile ("amazon-meta.txt"); // ifstream = padrão ios:in
   if (myfile.is_open())
   {
     while (! myfile.eof() ) //enquanto end of file for false continua
@@ -31,22 +31,32 @@ try {
       getline (myfile,line); // como foi aberto em modo texto(padrão)
                              //e não binário(ios::bin) pega cada linha
 
-      if (line.find("Id: ")!= -1){
-	id = atoi(line.substr(line.find("Id: ") + 3).c_str());
+	if(line.find("title: ") != -1){
+		if(line.find("'") == -1) {
+	title = line.substr(line.find("title: ") + 7);
+	cout << "bd_title = " + title<<endl;
+}
+		else {
+			title = "Titulo com defeito";
+			cout << "bd_title = " + title<<endl;
+}
 }
 	else if(line.find("ASIN: ") != -1){
 	asin = line.substr(line.find("ASIN: ") + 6);
+	cout << "bd_asin = " + asin<<endl;
 }
-	else if(line.find("title: ") != -1){
-	title = line.substr(line.find("title: ") + 7);
-}
+
 	else if(line.find("group: ") != -1){
 	grupo = line.substr(line.find("group: ") + 7);
+	cout << "bd_od = " + grupo<<endl;
+}
+	else if (line.find("Id: ")!= -1){
+	id = atoi(line.substr(line.find("Id: ") + 3).c_str());
+	cout << "bd_Id = " + to_string(id)<<endl;
 }
 	else if(line.find("salesrank: ") != -1){
 	salesrank = atoi(line.substr(line.find("salesrank: ") + 11).c_str());
-	cout << "bd_id = " + to_string(id) + " bd_asin = " + asin + " bd_title = '"+ title + " bd_group = " + grupo +
-	" bd_salesrank = " + to_string(salesrank) <<endl;
+	cout <<" bd_salesrank = " + to_string(salesrank) <<endl;
 
 	 sql = "INSERT INTO Produtos (id,asin,title,grupo,sales_rank) "  \
          "VALUES (" + to_string(id) + ", '" + asin + "','" + title+ "', '" + grupo+ "', " + to_string(salesrank) + "); ";  
