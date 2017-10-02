@@ -5,7 +5,7 @@ using namespace std;
 using namespace pqxx;
 
 int main(int argc, char* argv[]) {
-   char * sql;
+   string sql;
    string dbname, nome, password;
    cout<<"Digite o nome do bd:";
 	getline(cin,dbname);
