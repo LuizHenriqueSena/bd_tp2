@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
 
       /* Create the SQL query */
       sql = "CREATE TABLE Similares("  \
-      "id INT PRIMARY KEY     NOT NULL," \
+      "id SERIAL PRIMARY KEY     NOT NULL," \
       "id_Produto     INT     NOT NULL," \
       "similares        text    NOT NULL);";
 
@@ -52,10 +52,12 @@ int main(int argc, char* argv[]) {
 
       /* Create the SQL query */
       sql = "CREATE TABLE Comentarios("  \
-      "id_comentario  INT PRIMARY KEY     NOT NULL," \
+      "id_comentario  SERIAL PRIMARY KEY  NOT NULL," \
       "id_produto     TEXT    NOT NULL," \
+      "titulo_prod    TEXT    NOT NULL," \
       "data           TEXT    NOT NULL," \
       "cliente        TEXT    NOT NULL," \
+      "grupo	      TEXT    NOT NULL," \
       "nota           INT     NOT NULL," \
       "votos          INT     NOT NULL," \
       "util           INT     NOT NULL);";
@@ -67,7 +69,7 @@ int main(int argc, char* argv[]) {
 
       /* Create the SQL query */
       sql = "CREATE TABLE Cliente("  \
-      "id_cliente INT PRIMARY KEY     NOT NULL," \
+      "id_cliente SERIAL PRIMARY KEY  NOT NULL," \
       "id_produto     TEXT    NOT NULL);";
 
       /* Execute SQL query */
@@ -75,15 +77,8 @@ int main(int argc, char* argv[]) {
       //W.commit();
       cout << "Table cliente created successfully" << endl;
 
-      /* Create the SQL query */
-      sql = "CREATE TABLE Grupos("  \
-      "id_grupo INT PRIMARY KEY     NOT NULL," \
-      "nome     TEXT    NOT NULL);";
 
-      /* Execute SQL query */
-      W.exec( sql );
       W.commit();
-      cout << "Table Grupos created successfully" << endl;
 
 
 
