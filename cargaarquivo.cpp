@@ -88,7 +88,7 @@ try {
 		int tamanho = atoi(line.substr(line.find("similar: ") + 9,3).c_str());
 		for(int i = 0; i < tamanho; i++){
 			string similar = line2.substr(i*12,10);
-			sql = "INSERT INTO Similares (id,id_produto,similares) VALUES (default, "+to_string(id)+", '" + similar+ "');" ;
+			sql = "INSERT INTO Similares (id,id_produto,titulo,similares) VALUES (default, "+to_string(id)+", '" + title + "','"+ similar+ "');" ;
       /* Execute SQL query */
       	 W.exec( sql );
 		

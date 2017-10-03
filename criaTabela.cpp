@@ -43,6 +43,7 @@ int main(int argc, char* argv[]) {
       sql = "CREATE TABLE Similares("  \
       "id SERIAL PRIMARY KEY     NOT NULL," \
       "id_Produto     INT     NOT NULL," \
+      "titulo	       text     NOT NULL," \
       "similares        text    NOT NULL);";
 
       /* Execute SQL query */
