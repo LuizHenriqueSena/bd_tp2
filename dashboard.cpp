@@ -194,6 +194,60 @@ for (result::const_iterator c = VHS.begin(); c != VHS.end(); ++c) {
 	} else if (opcaoEscolhida == "f") {
 		cout << "F escolhida!" << endl;
 	} else if (opcaoEscolhida == "g") {
+
+		string sqlBook, sqlDVD, sqlCD, sqlVHS;
+
+		sqlBook = "select cliente, count(*) AS conta from Comentarios where grupo = 'Book' GROUP BY cliente ORDER BY conta DESC LIMIT 10;";
+
+		sqlDVD = "select cliente, count(*) AS conta from Comentarios where grupo = 'DVD' GROUP BY cliente ORDER BY conta DESC LIMIT 10;";
+
+		sqlCD = "select cliente, count(*) AS conta from Comentarios where grupo = 'Music' GROUP BY cliente ORDER BY conta DESC LIMIT 10;";
+
+		sqlVHS = "select cliente, count(*) AS conta from Comentarios where grupo = 'Video' GROUP BY cliente ORDER BY conta DESC LIMIT 10;";
+		
+		/* Create a non-transactional object. */
+      nontransaction N(C);
+      
+      /* Execute SQL query */
+      result Book( N.exec( sqlBook ));
+
+	  result DVD( N.exec( sqlDVD ));
+
+      result CD( N.exec( sqlCD ));
+ 
+      result VHS( N.exec( sqlVHS ));
+      
+		cout << "\n\nTop 10 Clientes que mais comentaram por Grupos\n\n" << endl;  
+
+		cout << "----------------Books----------------\n\n" << endl;
+
+      /* List down all the records */
+      for (result::const_iterator c = Book.begin(); c != Book.end(); ++c) {
+         cout << "Cliente = " << c[0].as<string>() << endl;
+         cout << "Comentários Feitos = " << c[1].as<string>() << endl;
+      }
+
+		cout << "\n\n----------------DVDs----------------\n\n" << endl;
+
+for (result::const_iterator c = DVD.begin(); c != DVD.end(); ++c) {
+         cout << "Cliente = " << c[0].as<string>() << endl;
+         cout << "Comentários Feitos = " << c[1].as<string>() << endl;
+      }
+
+		cout << "\n\n----------------CDs----------------\n\n" << endl;
+
+for (result::const_iterator c = CD.begin(); c != CD.end(); ++c) {
+         cout << "Cliente = " << c[0].as<string>() << endl;
+         cout << "Comentários Feitos = " << c[1].as<string>() << endl;
+      }
+
+cout << "\n\n----------------VHS'----------------\n\n" << endl;
+
+for (result::const_iterator c = VHS.begin(); c != VHS.end(); ++c) {
+         cout << "Cliente = " << c[0].as<string>() << endl;
+         cout << "Comentários Feitos = " << c[1].as<string>() << endl;
+      }
+
 		cout << "G escolhida!" << endl;
 	} else {
 		cout << "Opção inválida!" << endl; 	

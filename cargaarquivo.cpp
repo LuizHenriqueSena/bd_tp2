@@ -102,7 +102,7 @@ try {
 }
 }
 	else if((flagrev == 1) && (line.find ("cutomer: ") != -1)) {
-		string data, cliente, grupo;
+		string data, cliente;
 		int nota, votos, util;
 		line = removeQuebraLinha(line);
 		data = line.substr(4,10);
