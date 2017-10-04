@@ -23,9 +23,16 @@ string removeQuebraLinha(string a)
 int main () {
 	int flacat = 0;
 	int flagrev = 0;
-try {
-      connection C("dbname = luiz user = luiz password = luiz \
-      hostaddr =127.0.0.1 port =5432");
+   string dbname, nome, password;
+   cout<<"Digite o nome do bd:";
+	getline(cin,dbname);
+   cout<<"Digite o nome do usuario:";
+	getline(cin,nome);
+   cout<<"Digite a senha do usuario:";
+	getline(cin,password);
+   try {
+      connection C("dbname =" +dbname + " user = "+ nome +" password = "+password+" \
+      hostaddr = 127.0.0.1 port = 5432");
       if (C.is_open()) {
          cout << "Opened database successfully: " << C.dbname() << endl;
       } else {
@@ -34,10 +41,13 @@ try {
  /* Create a transactional object. */
       	work W(C);
 	string sql;
+	string pathDoArquivo;
 	int id, salesrank;
 	string asin, title, grupo;
   string line;
-  ifstream myfile ("/home/luiz/Downloads/amazon-meta.txt"); // ifstream = padrão ios:in
+	      cout<<"Digite o caminho do arquivo de dados de entrada: ";
+	getline(cin,pathDoArquivo);
+  ifstream myfile (pathDoArquivo); // ifstream = padrão ios:in
   if (myfile.is_open())
   {
     while (! myfile.eof() ) //enquanto end of file for false continua
